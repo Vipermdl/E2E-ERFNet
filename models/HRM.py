@@ -61,7 +61,7 @@ class HRM_Block(nn.Module):
         self.unshuffle_convbn = BasicConv(in_planes=in_planes*stride, out_planes=in_planes, kernel_size=kernel_size, padding=padding)
         self.relu = nn.ReLU(inplace=True)
         self.se_block = SE_Block(exp_size=in_planes)
-        self.drop_block = nn.Dropout(p=0.1)#(block_size=3, drop_prob=0.1)
+        #self.drop_block = nn.Dropout(p=0.1)#(block_size=3, drop_prob=0.1)
 
     def forward(self, x):
         horizontal_x = self.horizontal_avg_pool(x)
@@ -71,7 +71,7 @@ class HRM_Block(nn.Module):
         x = horizontal_x + unshuffle_x
         x = self.relu(x)
         x = self.se_block(x)
-        x = self.drop_block(x)
+        #x = self.drop_block(x)
         return x
 
 
